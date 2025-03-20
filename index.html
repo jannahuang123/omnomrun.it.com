@@ -2,161 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Play Om Nom Run - An exciting endless runner game where you control Om Nom through various obstacles and challenges. Free online game with smooth controls and engaging gameplay.">
-    <meta name="keywords" content="Om Nom Run, online game, endless runner, free game, Om Nom">
-    <link rel="canonical" href="https://omnomrun.com">
-    <title>Om Nom Run - Play Free Online Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Om Nom Run - Play the Exciting Running Game Online</title>
+    <meta name="description" content="Play Om Nom Run online - An exciting endless runner game featuring the adorable Om Nom character. Jump, slide, and collect candies in this addictive adventure!">
+    <link rel="canonical" href="https://omnomrun.com" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .game-container {
-            position: relative;
-            width: 100%;
-            padding-top: 56.25%; /* 16:9 宽高比 */
-            background: #f8f9fa;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            -webkit-tap-highlight-color: transparent;
-        }
-        .game-iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .game-controls {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            z-index: 10;
-            display: flex;
-            gap: 0.5rem;
-        }
-        .game-button {
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            border-radius: 0.5rem;
-            padding: 0.5rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
-        }
-        .game-button:hover {
-            background: rgba(255, 255, 255, 1);
-            transform: translateY(-1px);
-        }
-        .game-button:active {
-            transform: translateY(0);
-        }
-        .game-button svg {
-            width: 1.5rem;
-            height: 1.5rem;
-            color: #374151;
-        }
-        @media (max-width: 640px) {
-            .game-button {
-                padding: 0.75rem;
-            }
-            .game-button svg {
-                width: 1.75rem;
-                height: 1.75rem;
-            }
-        }
-        .loading-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.9);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 5;
-        }
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #3498db;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
 </head>
 <body class="bg-gray-50">
     <header class="bg-white shadow-sm">
         <div class="max-w-7xl mx-auto px-4 py-6">
             <h1 class="text-4xl font-bold text-gray-900 text-center">Om Nom Run</h1>
-            <p class="mt-2 text-xl text-gray-600 text-center">An exciting endless runner game featuring the adorable Om Nom!</p>
+            <p class="mt-2 text-xl text-gray-600 text-center">The Ultimate Endless Runner Adventure</p>
         </div>
     </header>
 
     <main class="max-w-7xl mx-auto px-4 py-8">
-        <div class="bg-white rounded-xl shadow-xl p-6">
-            <div class="game-container">
-                <div id="loadingOverlay" class="loading-overlay">
-                    <div class="loading-spinner"></div>
-                    <p class="mt-4 text-gray-600">加载游戏中...</p>
-                </div>
-                <div class="game-controls">
-                    <button class="game-button" id="fullscreenBtn" title="Fullscreen">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                        </svg>
-                    </button>
-                    <button class="game-button" id="closeBtn" title="Close Game">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-                <iframe 
-                    id="gameIframe"
-                    class="game-iframe"
-                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    frameborder="0"
-                    scrolling="no"
-                    allowfullscreen>
-                </iframe>
-            </div>
-        </div>
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-4">About the Game</h2>
+            <p class="text-gray-600">Om Nom Run is an exciting endless runner game where you control the adorable Om Nom character. Jump over obstacles, slide under barriers, and collect delicious candies as you run through various challenging levels. With its simple controls and addictive gameplay, Om Nom Run offers endless entertainment for players of all ages.</p>
+        </section>
 
-        <section class="mt-8">
-            <h2 class="text-2xl font-semibold text-gray-900 mb-4">About Om Nom Run</h2>
-            <div class="prose max-w-none">
-                <p class="text-gray-600">
-                    Om Nom Run is an exciting endless runner game where you control the adorable Om Nom character through various challenging levels. 
-                    Jump over obstacles, collect candies, and power-ups while trying to achieve the highest score. 
-                    With its colorful graphics, smooth controls, and addictive gameplay, this free online game provides endless fun for players of all ages.
-                </p>
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-4">Game Features</h2>
+            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                <li>Simple one-touch controls</li>
+                <li>Multiple challenging levels</li>
+                <li>Collect candies and power-ups</li>
+                <li>Beautiful graphics and animations</li>
+                <li>Endless replay value</li>
+            </ul>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-4">Play Now</h2>
+            <div class="aspect-w-16 aspect-h-9 bg-white rounded-lg shadow-lg overflow-hidden">
+                <iframe 
+                    src="https://www.crazygames.com/embed/om-nom-run" 
+                    class="w-full h-[600px]"
+                    frameborder="0" 
+                    allow="gamepad *;">
+                </iframe>
             </div>
         </section>
 
-        <section class="mt-8">
-            <h2 class="text-2xl font-semibold text-gray-900 mb-4">Game Features</h2>
-            <ul class="list-disc list-inside text-gray-600 space-y-2">
-                <li>Simple and intuitive controls</li>
-                <li>Endless gameplay with increasing difficulty</li>
-                <li>Collect candies and power-ups</li>
-                <li>Multiple obstacles and challenges</li>
-                <li>Free to play online</li>
-            </ul>
+        <section>
+            <h2 class="text-2xl font-semibold text-gray-900 mb-4">How to Play</h2>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <ol class="list-decimal list-inside text-gray-600 space-y-2">
+                    <li>Click the game window to start</li>
+                    <li>Use spacebar or tap to jump</li>
+                    <li>Slide down to avoid obstacles</li>
+                    <li>Collect candies for extra points</li>
+                    <li>Try to achieve the highest score!</li>
+                </ol>
+            </div>
         </section>
     </main>
 
@@ -165,157 +64,5 @@
             <p>&copy; 2024 Om Nom Run. All rights reserved.</p>
         </div>
     </footer>
-
-    <script>
-        // 游戏链接自动获取和更新
-        const gameIframe = document.getElementById('gameIframe');
-        const loadingOverlay = document.getElementById('loadingOverlay');
-        
-        // 游戏配置
-        const gameConfig = {
-            baseUrl: "https://games.cdn.famobi.com/html5games/o/om-nom-run/v1240/",
-            params: {
-                fg_domain: "play.famobi.com",
-                fg_aid: "A1000-111",
-                fg_uid: "abe80572-560a-444d-baf7-2fa4a7b2c02f",
-                fg_pid: "e37ab3ce-88cd-4438-9b9c-a37df5d33736",
-                fg_beat: "442",
-                original_ref: "https://play.famobi.com/html5game/abe80572-560a-444d-baf7-2fa4a7b2c02f/A1000-11",
-                "fg_options[disable_external_links]": "true",
-                "fg_options[redirect_target]": "_self",
-                embed: "true"
-            }
-        };
-
-        // 构建游戏URL
-        function buildGameUrl() {
-            const queryString = Object.entries(gameConfig.params)
-                .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
-                .join('&');
-            return `${gameConfig.baseUrl}?${queryString}`;
-        }
-
-        // 加载游戏
-        function loadGame() {
-            loadingOverlay.style.display = 'flex';
-            
-            // 使用构建的URL直接加载游戏
-            const gameUrl = buildGameUrl();
-            gameIframe.src = gameUrl;
-
-            // 监听iframe加载完成
-            gameIframe.onload = function() {
-                setTimeout(() => {
-                    loadingOverlay.style.display = 'none';
-                }, 1500);
-            };
-
-            // 错误处理
-            gameIframe.onerror = function() {
-                console.log('游戏加载失败，尝试备用方案');
-                // 使用备用URL
-                gameIframe.src = "https://games.cdn.famobi.com/html5games/o/om-nom-run/v1240/?fg_domain=play.famobi.com&fg_aid=A1000-111&fg_uid=abe80572-560a-444d-baf7-2fa4a7b2c02f&fg_pid=e37ab3ce-88cd-4438-9b9c-a37df5d33736&fg_beat=442&original_ref=https%3A%2F%2Fplay.famobi.com%2Fhtml5game%2Fabe80572-560a-444d-baf7-2fa4a7b2c02f%2FA1000-11&fg_options[disable_external_links]=true&fg_options[redirect_target]=_self&embed=true";
-            };
-        }
-
-        // 页面加载时初始化游戏
-        window.addEventListener('load', loadGame);
-
-        // 全屏功能
-        const fullscreenBtn = document.getElementById('fullscreenBtn');
-        const gameContainer = document.querySelector('.game-container');
-
-        function toggleFullscreen() {
-            if (!document.fullscreenElement) {
-                if (gameContainer.requestFullscreen) {
-                    gameContainer.requestFullscreen();
-                } else if (gameContainer.webkitRequestFullscreen) {
-                    gameContainer.webkitRequestFullscreen();
-                } else if (gameContainer.msRequestFullscreen) {
-                    gameContainer.msRequestFullscreen();
-                }
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.webkitExitFullscreen) {
-                    document.webkitExitFullscreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                }
-            }
-        }
-
-        // 添加点击事件
-        fullscreenBtn.addEventListener('click', toggleFullscreen);
-        
-        // 添加触摸事件
-        fullscreenBtn.addEventListener('touchend', (e) => {
-            e.preventDefault();
-            toggleFullscreen();
-        });
-
-        // 关闭游戏功能
-        const closeBtn = document.getElementById('closeBtn');
-
-        function resetGame() {
-            loadGame();
-        }
-
-        // 添加点击事件
-        closeBtn.addEventListener('click', resetGame);
-        
-        // 添加触摸事件
-        closeBtn.addEventListener('touchend', (e) => {
-            e.preventDefault();
-            resetGame();
-        });
-
-        // 防止移动端双击缩放
-        document.addEventListener('dblclick', (e) => {
-            e.preventDefault();
-        });
-
-        // 防止移动端长按菜单
-        document.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-        });
-
-        // 阻止 iframe 中的链接跳转
-        window.addEventListener('message', function(event) {
-            if (event.data && event.data.type === 'openUrl') {
-                event.preventDefault();
-                return false;
-            }
-        });
-
-        // 监听 iframe 加载状态
-        let loadAttempts = 0;
-        const maxAttempts = 3;
-
-        function checkIframeLoad() {
-            if (loadAttempts >= maxAttempts) {
-                console.log('达到最大重试次数');
-                return;
-            }
-
-            try {
-                if (gameIframe.contentWindow && gameIframe.contentWindow.document) {
-                    const iframeDoc = gameIframe.contentWindow.document;
-                    if (iframeDoc.readyState === 'complete') {
-                        console.log('游戏加载完成');
-                        return;
-                    }
-                }
-            } catch (e) {
-                console.log('跨域检查失败');
-            }
-
-            loadAttempts++;
-            setTimeout(checkIframeLoad, 1000);
-        }
-
-        // 开始检查加载状态
-        setTimeout(checkIframeLoad, 2000);
-    </script>
 </body>
 </html> 
