@@ -3,166 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Om Nom Run - Fun & Addictive Online Running Game</title>
-    <meta name="description" content="Play Om Nom Run online for free! Help Om Nom collect candies and avoid obstacles in this exciting runner game. Perfect for all ages.">
+    <title>Om Nom Run - Play the Fun Running Game Online</title>
+    <meta name="description" content="Play Om Nom Run online! Join Om Nom in this exciting endless runner game. Jump, slide, and collect candies in this addictive adventure.">
     <link rel="canonical" href="https://omnomrun.com">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Om Nom Run - Fun & Addictive Online Running Game">
-    <meta property="og:description" content="Play Om Nom Run online for free! Help Om Nom collect candies and avoid obstacles in this exciting runner game.">
-    <meta property="og:url" content="https://omnomrun.com">
-    <meta property="og:type" content="website">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Om Nom Run - Fun & Addictive Online Running Game">
-    <meta name="twitter:description" content="Play Om Nom Run online for free! Help Om Nom collect candies and avoid obstacles.">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'apple-blue': '#007AFF',
-                        'apple-green': '#34C759',
-                        'apple-pink': '#FF2D55',
-                        'apple-purple': '#AF52DE',
-                        'apple-yellow': '#FFCC00',
-                        'apple-gray': '#8E8E93',
-                    }
-                }
-            }
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f5f5f7;
         }
-    </script>
-    
-    <style type="text/tailwind">
-        @layer base {
-            body {
-                @apply bg-gray-50 text-gray-900 font-sans;
-            }
-            h1 {
-                @apply text-4xl md:text-5xl font-bold text-apple-blue mb-4;
-            }
-            h2 {
-                @apply text-2xl md:text-3xl font-semibold text-apple-purple mb-3 mt-6;
-            }
-            p {
-                @apply mb-4 text-lg;
-            }
+        .game-container {
+            aspect-ratio: 16/9;
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </head>
-<body>
-    <header class="bg-white shadow-md">
-        <div class="container mx-auto px-4 py-6">
-            <nav class="flex justify-between items-center">
-                <div class="text-2xl font-bold text-apple-blue">Om Nom Run</div>
-                <ul class="hidden md:flex space-x-6">
-                    <li><a href="#game" class="hover:text-apple-pink transition-colors">Play Game</a></li>
-                    <li><a href="#about" class="hover:text-apple-pink transition-colors">About</a></li>
-                    <li><a href="#instructions" class="hover:text-apple-pink transition-colors">How to Play</a></li>
-                </ul>
-            </nav>
+<body class="min-h-screen">
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold text-gray-900">Om Nom Run</h1>
+            <p class="mt-2 text-lg text-gray-600">An exciting endless runner game featuring the adorable Om Nom!</p>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-8">
-        <section class="text-center mb-12">
-            <h1>Om Nom Run</h1>
-            <p class="text-xl md:text-2xl text-apple-gray max-w-3xl mx-auto">Join Om Nom on an exciting adventure to collect candies and dodge obstacles in this addictive runner game!</p>
-        </section>
-
-        <section id="game" class="mb-16">
-            <h2 class="text-center">Play Online Now</h2>
-            <div class="aspect-w-16 aspect-h-9 mt-6 bg-white shadow-lg rounded-lg overflow-hidden">
+    <main class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="game-container mx-auto">
                 <iframe 
-                    src="https://play.famobi.com/om-nom-run" 
-                    width="100%" 
-                    height="600" 
-                    class="mx-auto border-0 rounded-lg shadow-md"
+                    src="https://games.cdn.famobi.com/html5games/o/om-nom-run/v1240/?fg_domain=play.famobi.com&fg_aid=A1000-1&fg_uid=abe80572-560a-444d-baf7-2fa4a7b2c02f&fg_pid=4638e320-4444-4514-81c4-d80a8c662371&fg_beat=375&original_ref=" 
                     frameborder="0" 
-                    scrolling="no" 
-                    allow="autoplay; fullscreen; gamepad"
-                    sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-                    title="Om Nom Run Online Game">
+                    allowfullscreen 
+                    class="w-full h-full">
                 </iframe>
             </div>
-        </section>
+        </div>
 
-        <section id="about" class="mb-16 grid md:grid-cols-2 gap-8">
-            <div>
-                <h2>About Om Nom Run</h2>
-                <p>Om Nom Run is an exciting endless runner game featuring the lovable character Om Nom from the popular Cut the Rope series. In this fast-paced adventure, you'll help Om Nom navigate through colorful environments, collecting sweet candies while avoiding various obstacles.</p>
-                <p>With simple controls and addictive gameplay, Om Nom Run is perfect for players of all ages. The vibrant graphics and charming character designs make this game a delightful experience for everyone.</p>
-            </div>
-            <div>
-                <h2>Game Features</h2>
-                <ul class="list-disc pl-5 space-y-2 text-lg">
-                    <li>Simple one-touch controls</li>
-                    <li>Colorful and vibrant environments</li>
-                    <li>Collect candies and power-ups</li>
-                    <li>Avoid obstacles and enemies</li>
-                    <li>Unlock special abilities and characters</li>
-                    <li>Challenge yourself with increasing difficulty</li>
-                    <li>Free to play online anytime</li>
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <section class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-4">About Om Nom Run</h2>
+                <p class="text-gray-600">Om Nom Run is an addictive endless runner game where you control the cute character Om Nom. Jump over obstacles, slide under barriers, and collect delicious candies along the way. The game features smooth controls and increasing difficulty to keep you engaged!</p>
+            </section>
+
+            <section class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-4">How to Play</h2>
+                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                    <li>Use the spacebar or tap to jump</li>
+                    <li>Press down arrow or swipe down to slide</li>
+                    <li>Collect candies to increase your score</li>
+                    <li>Avoid obstacles to stay alive</li>
+                    <li>Try to achieve the highest score possible!</li>
                 </ul>
-            </div>
-        </section>
-
-        <section id="instructions" class="mb-16">
-            <h2>How to Play</h2>
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <p><strong>Controls:</strong> Use your mouse, touchscreen, or keyboard to help Om Nom jump, slide, and move through the course.</p>
-                <p><strong>Objective:</strong> Collect as many candies as possible while avoiding obstacles. The further you run, the higher your score!</p>
-                <p><strong>Tips:</strong> Watch out for special power-ups that can give Om Nom special abilities like magnets for candies or temporary invincibility.</p>
-            </div>
-        </section>
-
-        <section class="mb-16">
-            <h2>Why Players Love Om Nom Run</h2>
-            <div class="grid md:grid-cols-3 gap-6 mt-4">
-                <div class="bg-white p-5 rounded-lg shadow-md border-l-4 border-apple-green">
-                    <h3 class="text-xl font-semibold mb-2 text-apple-green">Addictive Gameplay</h3>
-                    <p>The simple yet challenging gameplay keeps players coming back for more, trying to beat their high scores.</p>
-                </div>
-                <div class="bg-white p-5 rounded-lg shadow-md border-l-4 border-apple-pink">
-                    <h3 class="text-xl font-semibold mb-2 text-apple-pink">Charming Character</h3>
-                    <p>Om Nom's lovable personality and cute animations make this game appealing to players of all ages.</p>
-                </div>
-                <div class="bg-white p-5 rounded-lg shadow-md border-l-4 border-apple-blue">
-                    <h3 class="text-xl font-semibold mb-2 text-apple-blue">Easy to Learn</h3>
-                    <p>With intuitive controls and straightforward objectives, anyone can jump in and start playing right away.</p>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
 
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <h2 class="text-white text-xl font-bold mb-4">Om Nom Run</h2>
-                    <p class="text-gray-300">Om Nom Run is a free online game available on OmNomRun.com. Play anytime, anywhere on your PC, tablet, or mobile device.</p>
-                </div>
-                <div>
-                    <h3 class="text-white text-lg font-semibold mb-3">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#game" class="text-gray-300 hover:text-white transition-colors">Play Game</a></li>
-                        <li><a href="#about" class="text-gray-300 hover:text-white transition-colors">About</a></li>
-                        <li><a href="#instructions" class="text-gray-300 hover:text-white transition-colors">How to Play</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="mt-8 pt-6 border-t border-gray-700 text-center text-gray-400">
-                <p>&copy; 2023 OmNomRun.com - All rights reserved</p>
-            </div>
+    <footer class="bg-white mt-8 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-600">
+            <p>© 2024 Om Nom Run. All rights reserved.</p>
         </div>
     </footer>
 </body>
