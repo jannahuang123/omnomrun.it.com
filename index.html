@@ -71,6 +71,31 @@
                 height: 1.75rem;
             }
         }
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+        }
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -84,6 +109,10 @@
     <main class="max-w-7xl mx-auto px-4 py-8">
         <div class="bg-white rounded-xl shadow-xl p-6">
             <div class="game-container">
+                <div id="loadingOverlay" class="loading-overlay">
+                    <div class="loading-spinner"></div>
+                    <p class="mt-4 text-gray-600">加载游戏中...</p>
+                </div>
                 <div class="game-controls">
                     <button class="game-button" id="fullscreenBtn" title="Fullscreen">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -97,7 +126,7 @@
                     </button>
                 </div>
                 <iframe 
-                    src="https://games.cdn.famobi.com/html5games/o/om-nom-run/v1240/?fg_domain=play.famobi.com&fg_aid=A1000-111&fg_uid=abe80572-560a-444d-baf7-2fa4a7b2c02f&fg_pid=e37ab3ce-88cd-4438-9b9c-a37df5d33736&fg_beat=411&original_ref=https%3A%2F%2Fplay.famobi.com%2Fom-nom-run%3Flocale%3Den%26exit_url%3Domnomrun.com"
+                    id="gameIframe"
                     class="game-iframe"
                     sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
                     referrerpolicy="no-referrer-when-downgrade"
@@ -138,10 +167,63 @@
     </footer>
 
     <script>
+        // 游戏链接自动获取和更新
+        const gameIframe = document.getElementById('gameIframe');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        
+        // 游戏配置
+        const gameConfig = {
+            baseUrl: "https://games.cdn.famobi.com/html5games/o/om-nom-run/v1240/",
+            params: {
+                fg_domain: "play.famobi.com",
+                fg_aid: "A1000-111",
+                fg_uid: "abe80572-560a-444d-baf7-2fa4a7b2c02f",
+                fg_pid: "e37ab3ce-88cd-4438-9b9c-a37df5d33736",
+                fg_beat: "442",
+                original_ref: "https://play.famobi.com/html5game/abe80572-560a-444d-baf7-2fa4a7b2c02f/A1000-11",
+                "fg_options[disable_external_links]": "true",
+                "fg_options[redirect_target]": "_self",
+                embed: "true"
+            }
+        };
+
+        // 构建游戏URL
+        function buildGameUrl() {
+            const queryString = Object.entries(gameConfig.params)
+                .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+                .join('&');
+            return `${gameConfig.baseUrl}?${queryString}`;
+        }
+
+        // 加载游戏
+        function loadGame() {
+            loadingOverlay.style.display = 'flex';
+            
+            // 使用构建的URL直接加载游戏
+            const gameUrl = buildGameUrl();
+            gameIframe.src = gameUrl;
+
+            // 监听iframe加载完成
+            gameIframe.onload = function() {
+                setTimeout(() => {
+                    loadingOverlay.style.display = 'none';
+                }, 1500);
+            };
+
+            // 错误处理
+            gameIframe.onerror = function() {
+                console.log('游戏加载失败，尝试备用方案');
+                // 使用备用URL
+                gameIframe.src = "https://games.cdn.famobi.com/html5games/o/om-nom-run/v1240/?fg_domain=play.famobi.com&fg_aid=A1000-111&fg_uid=abe80572-560a-444d-baf7-2fa4a7b2c02f&fg_pid=e37ab3ce-88cd-4438-9b9c-a37df5d33736&fg_beat=442&original_ref=https%3A%2F%2Fplay.famobi.com%2Fhtml5game%2Fabe80572-560a-444d-baf7-2fa4a7b2c02f%2FA1000-11&fg_options[disable_external_links]=true&fg_options[redirect_target]=_self&embed=true";
+            };
+        }
+
+        // 页面加载时初始化游戏
+        window.addEventListener('load', loadGame);
+
         // 全屏功能
         const fullscreenBtn = document.getElementById('fullscreenBtn');
         const gameContainer = document.querySelector('.game-container');
-        const iframe = document.querySelector('.game-iframe');
 
         function toggleFullscreen() {
             if (!document.fullscreenElement) {
@@ -176,7 +258,7 @@
         const closeBtn = document.getElementById('closeBtn');
 
         function resetGame() {
-            iframe.src = iframe.src;
+            loadGame();
         }
 
         // 添加点击事件
@@ -197,6 +279,43 @@
         document.addEventListener('contextmenu', (e) => {
             e.preventDefault();
         });
+
+        // 阻止 iframe 中的链接跳转
+        window.addEventListener('message', function(event) {
+            if (event.data && event.data.type === 'openUrl') {
+                event.preventDefault();
+                return false;
+            }
+        });
+
+        // 监听 iframe 加载状态
+        let loadAttempts = 0;
+        const maxAttempts = 3;
+
+        function checkIframeLoad() {
+            if (loadAttempts >= maxAttempts) {
+                console.log('达到最大重试次数');
+                return;
+            }
+
+            try {
+                if (gameIframe.contentWindow && gameIframe.contentWindow.document) {
+                    const iframeDoc = gameIframe.contentWindow.document;
+                    if (iframeDoc.readyState === 'complete') {
+                        console.log('游戏加载完成');
+                        return;
+                    }
+                }
+            } catch (e) {
+                console.log('跨域检查失败');
+            }
+
+            loadAttempts++;
+            setTimeout(checkIframeLoad, 1000);
+        }
+
+        // 开始检查加载状态
+        setTimeout(checkIframeLoad, 2000);
     </script>
 </body>
 </html> 
