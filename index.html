@@ -26,6 +26,35 @@
             height: 100%;
             border: none;
         }
+        .game-controls {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 10;
+            display: flex;
+            gap: 0.5rem;
+        }
+        .game-button {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .game-button:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-1px);
+        }
+        .game-button svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: #374151;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -39,9 +68,25 @@
     <main class="max-w-7xl mx-auto px-4 py-8">
         <div class="bg-white rounded-xl shadow-xl p-6">
             <div class="game-container">
+                <div class="game-controls">
+                    <button class="game-button" id="fullscreenBtn" title="Fullscreen">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                        </svg>
+                    </button>
+                    <button class="game-button" id="closeBtn" title="Close Game">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
                 <iframe 
-                    src="https://www.crazygames.com/embed/om-nom-run"
+                    src="https://games.cdn.famobi.com/html5games/o/om-nom-run/v1240/?fg_domain=play.famobi.com&fg_aid=A1000-111&fg_uid=abe80572-560a-444d-baf7-2fa4a7b2c02f&fg_pid=e37ab3ce-88cd-4438-9b9c-a37df5d33736&fg_beat=411&original_ref=https%3A%2F%2Fplay.famobi.com%2Fom-nom-run%3Flocale%3Den%26exit_url%3Domnomrun.com"
                     class="game-iframe"
+                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    frameborder="0"
+                    scrolling="no"
                     allowfullscreen>
                 </iframe>
             </div>
@@ -51,9 +96,9 @@
             <h2 class="text-2xl font-semibold text-gray-900 mb-4">About Om Nom Run</h2>
             <div class="prose max-w-none">
                 <p class="text-gray-600">
-                    Om Nom Run is an engaging endless runner game that brings the beloved character Om Nom to life in an exciting adventure. 
-                    Navigate through various obstacles, collect candies, and try to achieve the highest score possible. 
-                    With smooth controls and addictive gameplay, this free online game offers endless entertainment for players of all ages.
+                    Om Nom Run is an exciting endless runner game where you control the adorable Om Nom character through various challenging levels. 
+                    Jump over obstacles, collect candies, and power-ups while trying to achieve the highest score. 
+                    With its colorful graphics, smooth controls, and addictive gameplay, this free online game provides endless fun for players of all ages.
                 </p>
             </div>
         </section>
@@ -75,5 +120,29 @@
             <p>&copy; 2024 Om Nom Run. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // 全屏功能
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const gameContainer = document.querySelector('.game-container');
+
+        fullscreenBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                gameContainer.requestFullscreen().catch(err => {
+                    console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        });
+
+        // 关闭游戏功能
+        const closeBtn = document.getElementById('closeBtn');
+        const iframe = document.querySelector('.game-iframe');
+
+        closeBtn.addEventListener('click', () => {
+            iframe.src = iframe.src; // 重新加载游戏
+        });
+    </script>
 </body>
 </html> 
