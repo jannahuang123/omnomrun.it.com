@@ -3,64 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Om Nom Run - Play the Fun Running Game Online</title>
-    <meta name="description" content="Play Om Nom Run online! Join Om Nom in this exciting endless runner game. Jump, slide, and collect candies in this addictive adventure.">
+    <meta name="description" content="Play Om Nom Run - An exciting endless runner game where you control Om Nom through various obstacles and challenges. Free online game with smooth controls and engaging gameplay.">
+    <meta name="keywords" content="Om Nom Run, online game, endless runner, free game, Om Nom">
     <link rel="canonical" href="https://omnomrun.com">
+    <title>Om Nom Run - Play Free Online Game</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: #f5f5f7;
-        }
         .game-container {
-            aspect-ratio: 16/9;
-            max-width: 100%;
-            height: auto;
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 宽高比 */
+            background: #f8f9fa;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .game-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
     </style>
 </head>
-<body class="min-h-screen">
+<body class="bg-gray-50">
     <header class="bg-white shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-            <h1 class="text-3xl font-bold text-gray-900">Om Nom Run</h1>
-            <p class="mt-2 text-lg text-gray-600">An exciting endless runner game featuring the adorable Om Nom!</p>
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <h1 class="text-4xl font-bold text-gray-900 text-center">Om Nom Run</h1>
+            <p class="mt-2 text-xl text-gray-600 text-center">An exciting endless runner game featuring the adorable Om Nom!</p>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        <div class="bg-white rounded-lg shadow-lg p-6">
-            <div class="game-container mx-auto">
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-xl shadow-xl p-6">
+            <div class="game-container">
                 <iframe 
-                    src="https://games.cdn.famobi.com/html5games/o/om-nom-run/v1240/?fg_domain=play.famobi.com&fg_aid=A1000-1&fg_uid=abe80572-560a-444d-baf7-2fa4a7b2c02f&fg_pid=4638e320-4444-4514-81c4-d80a8c662371&fg_beat=375&original_ref=" 
-                    frameborder="0" 
-                    allowfullscreen 
-                    class="w-full h-full">
+                    src="https://www.crazygames.com/embed/om-nom-run"
+                    class="game-iframe"
+                    allowfullscreen>
                 </iframe>
             </div>
         </div>
 
-        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <section class="bg-white rounded-lg shadow-lg p-6">
-                <h2 class="text-2xl font-semibold text-gray-900 mb-4">About Om Nom Run</h2>
-                <p class="text-gray-600">Om Nom Run is an addictive endless runner game where you control the cute character Om Nom. Jump over obstacles, slide under barriers, and collect delicious candies along the way. The game features smooth controls and increasing difficulty to keep you engaged!</p>
-            </section>
+        <section class="mt-8">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-4">About Om Nom Run</h2>
+            <div class="prose max-w-none">
+                <p class="text-gray-600">
+                    Om Nom Run is an engaging endless runner game that brings the beloved character Om Nom to life in an exciting adventure. 
+                    Navigate through various obstacles, collect candies, and try to achieve the highest score possible. 
+                    With smooth controls and addictive gameplay, this free online game offers endless entertainment for players of all ages.
+                </p>
+            </div>
+        </section>
 
-            <section class="bg-white rounded-lg shadow-lg p-6">
-                <h2 class="text-2xl font-semibold text-gray-900 mb-4">How to Play</h2>
-                <ul class="list-disc list-inside text-gray-600 space-y-2">
-                    <li>Use the spacebar or tap to jump</li>
-                    <li>Press down arrow or swipe down to slide</li>
-                    <li>Collect candies to increase your score</li>
-                    <li>Avoid obstacles to stay alive</li>
-                    <li>Try to achieve the highest score possible!</li>
-                </ul>
-            </section>
-        </div>
+        <section class="mt-8">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-4">Game Features</h2>
+            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                <li>Simple and intuitive controls</li>
+                <li>Endless gameplay with increasing difficulty</li>
+                <li>Collect candies and power-ups</li>
+                <li>Multiple obstacles and challenges</li>
+                <li>Free to play online</li>
+            </ul>
+        </section>
     </main>
 
-    <footer class="bg-white mt-8 py-6">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-600">
-            <p>© 2024 Om Nom Run. All rights reserved.</p>
+    <footer class="bg-white border-t mt-8">
+        <div class="max-w-7xl mx-auto px-4 py-6 text-center text-gray-600">
+            <p>&copy; 2024 Om Nom Run. All rights reserved.</p>
         </div>
     </footer>
 </body>
