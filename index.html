@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Play Om Nom Run - An exciting endless runner game where you control Om Nom through various obstacles and challenges. Free online game with smooth controls and engaging gameplay.">
     <meta name="keywords" content="Om Nom Run, online game, endless runner, free game, Om Nom">
     <link rel="canonical" href="https://omnomrun.com">
@@ -17,6 +17,7 @@
             border-radius: 1rem;
             overflow: hidden;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            -webkit-tap-highlight-color: transparent;
         }
         .game-iframe {
             position: absolute;
@@ -25,6 +26,7 @@
             width: 100%;
             height: 100%;
             border: none;
+            -webkit-tap-highlight-color: transparent;
         }
         .game-controls {
             position: absolute;
@@ -45,15 +47,29 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
         }
         .game-button:hover {
             background: rgba(255, 255, 255, 1);
             transform: translateY(-1px);
         }
+        .game-button:active {
+            transform: translateY(0);
+        }
         .game-button svg {
             width: 1.5rem;
             height: 1.5rem;
             color: #374151;
+        }
+        @media (max-width: 640px) {
+            .game-button {
+                padding: 0.75rem;
+            }
+            .game-button svg {
+                width: 1.75rem;
+                height: 1.75rem;
+            }
         }
     </style>
 </head>
@@ -125,23 +141,61 @@
         // 全屏功能
         const fullscreenBtn = document.getElementById('fullscreenBtn');
         const gameContainer = document.querySelector('.game-container');
+        const iframe = document.querySelector('.game-iframe');
 
-        fullscreenBtn.addEventListener('click', () => {
+        function toggleFullscreen() {
             if (!document.fullscreenElement) {
-                gameContainer.requestFullscreen().catch(err => {
-                    console.log(`Error attempting to enable fullscreen: ${err.message}`);
-                });
+                if (gameContainer.requestFullscreen) {
+                    gameContainer.requestFullscreen();
+                } else if (gameContainer.webkitRequestFullscreen) {
+                    gameContainer.webkitRequestFullscreen();
+                } else if (gameContainer.msRequestFullscreen) {
+                    gameContainer.msRequestFullscreen();
+                }
             } else {
-                document.exitFullscreen();
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
             }
+        }
+
+        // 添加点击事件
+        fullscreenBtn.addEventListener('click', toggleFullscreen);
+        
+        // 添加触摸事件
+        fullscreenBtn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            toggleFullscreen();
         });
 
         // 关闭游戏功能
         const closeBtn = document.getElementById('closeBtn');
-        const iframe = document.querySelector('.game-iframe');
 
-        closeBtn.addEventListener('click', () => {
-            iframe.src = iframe.src; // 重新加载游戏
+        function resetGame() {
+            iframe.src = iframe.src;
+        }
+
+        // 添加点击事件
+        closeBtn.addEventListener('click', resetGame);
+        
+        // 添加触摸事件
+        closeBtn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            resetGame();
+        });
+
+        // 防止移动端双击缩放
+        document.addEventListener('dblclick', (e) => {
+            e.preventDefault();
+        });
+
+        // 防止移动端长按菜单
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
         });
     </script>
 </body>
