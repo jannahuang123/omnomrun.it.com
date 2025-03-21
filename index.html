@@ -169,17 +169,6 @@
             transform-origin: center;
             object-fit: contain;
         }
-        .error-message {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 80%;
-            z-index: 1002;
-        }
-        .hidden {
-            display: none;
-        }
     </style>
 </head>
 <body class="bg-gray-900 text-white min-h-screen flex flex-col">
@@ -298,7 +287,7 @@
             try {
                 const response = await fetch('games.json');
                 allGames = await response.json(); // 保存所有游戏数据
-                const categoryStats = await fetch('category_stats.json');
+                const categoryStats = await fetch('category_stats.json').then(res => res.json());
                 
                 // 更新分类导航
                 const categoryNav = document.querySelector('.category-nav');
@@ -389,12 +378,11 @@
             const previewContainer = document.createElement('div');
             previewContainer.className = 'game-preview-container';
             
-            // 使用图片替代iframe预览
-            const previewImg = document.createElement('img');
-            previewImg.src = game.thumbnail;
-            previewImg.alt = game.title;
-            previewImg.className = 'w-full h-full object-cover';
-            previewContainer.appendChild(previewImg);
+            // 创建临时容器来解析iframe代码
+            const temp = document.createElement('div');
+            temp.innerHTML = `<iframe src="${game.iframe_src}" class="game-card-iframe" frameborder="0" allow="gamepad *;"></iframe>`;
+            
+            previewContainer.appendChild(temp.firstChild);
             
             // 添加游戏信息
             const info = document.createElement('div');
@@ -456,20 +444,6 @@
             controls.appendChild(fullscreenBtn);
             controls.appendChild(closeBtn);
             
-            // 创建错误信息元素
-            const errorMessage = document.createElement('div');
-            errorMessage.className = 'error-message hidden';
-            errorMessage.innerHTML = `
-                <div class="p-4 bg-red-500 bg-opacity-80 rounded-lg text-white text-center">
-                    <p class="text-lg font-bold mb-2">游戏加载失败</p>
-                    <p class="mb-4">由于第三方网站的限制，游戏无法在iframe中加载。</p>
-                    <a href="${game.url}" target="_blank" class="px-4 py-2 bg-white text-red-500 rounded-lg font-bold hover:bg-opacity-90">
-                        在原网站打开游戏
-                    </a>
-                </div>
-            `;
-            previewContainer.appendChild(errorMessage);
-            
             // 创建新的iframe
             const iframe = document.createElement('iframe');
             iframe.src = game.iframe_src;
@@ -479,17 +453,10 @@
             iframe.setAttribute('scrolling', 'no');
             iframe.setAttribute('allowfullscreen', 'true');
             
-            // 添加iframe加载错误处理
-            iframe.onerror = () => {
-                errorMessage.classList.remove('hidden');
-                iframe.classList.add('hidden');
-            };
-            
             // 清除之前的内容并添加新内容
             previewContainer.innerHTML = '';
             previewContainer.appendChild(iframe);
             previewContainer.appendChild(controls);
-            previewContainer.appendChild(errorMessage);
             
             // 显示预览
             preview.classList.add('active');
@@ -510,19 +477,6 @@
                 preview.classList.remove('active');
                 previewContainer.innerHTML = '';
             };
-            
-            // 添加iframe加载超时处理
-            setTimeout(() => {
-                // 检查iframe是否有内容
-                try {
-                    if (iframe.contentDocument && iframe.contentDocument.body.innerHTML === '') {
-                        errorMessage.classList.remove('hidden');
-                    }
-                } catch (e) {
-                    // 如果出现跨域错误，也显示错误信息
-                    errorMessage.classList.remove('hidden');
-                }
-            }, 5000);
         }
 
         // 初始化

@@ -1,7 +1,5 @@
 # OmNomRun 游戏网站
 
-[![部署状态](https://img.shields.io/badge/Cloudflare%20Pages-已部署-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://omnomrun.it)
-
 这是一个使用纯静态HTML/CSS/JavaScript构建的在线游戏网站。网站提供多种类型的游戏,包括动作、竞速、解谜等。
 
 ## 特点
