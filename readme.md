@@ -1,6 +1,43 @@
-# 疯狂游戏专区 - 多游戏站点
+# OmNomRun 游戏网站
 
-这是一个基于JSON配置的多语言游戏站点，专为Cloudflare Pages等静态托管服务设计。无需后端数据库，通过JSON文件管理游戏和站点配置。
+[![部署状态](https://img.shields.io/badge/Cloudflare%20Pages-已部署-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://omnomrun.it)
+
+这是一个使用纯静态HTML/CSS/JavaScript构建的在线游戏网站。网站提供多种类型的游戏,包括动作、竞速、解谜等。
+
+## 特点
+
+- 纯静态网站,无需后端服务器
+- 响应式设计,支持各种设备
+- 游戏分类系统
+- 实时搜索功能
+- 游戏预览功能
+- 全屏游戏支持
+
+## 文件结构
+
+- `index.html` - 主页面
+- `games.json` - 游戏数据
+- `category_stats.json` - 游戏分类统计
+- `game_by_category.md` - 游戏分类列表
+- `convert.js` - 数据转换脚本
+
+## 部署
+
+本网站可以部署在任何静态网站托管服务上,如:
+- GitHub Pages
+- Cloudflare Pages
+- Netlify
+- Vercel
+
+## 开发
+
+1. 克隆仓库
+2. 在本地启动一个HTTP服务器(例如使用 Python: `python -m http.server 8000`)
+3. 访问 `http://localhost:8000`
+
+## 许可
+
+MIT License
 
 ## 项目特点
 
@@ -112,72 +149,3 @@
 ## 许可证
 
 ##游戏的IFRAME地址
--<iframe src="https://www.crazygames.com/embed/bloxdhop-io" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/ragdoll-archers" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/mahjongg-solitaire" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/words-of-wonders" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/count-masters-stickman-games" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/8-ball-billiards-classic" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/slice-master" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/solar-smash" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/iron-towers-alliance" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/zombie-crusher-ooz" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/farm-merge-valley" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/project-prismatic" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/mirror-room-escape" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/tile-jumper-3d" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
--<iframe src="https://www.crazygames.com/embed/pirates-of-the-caribbean-tow" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/ink-shop-dress-tattoo-games" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/knight-clicker" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/limited-defense" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/limited-defense" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/spotti-find-the-differences" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/pin-away" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
--Driving Games
-<iframe src="https://www.crazygames.com/embed/racing-limits" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/polytrack" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/mx-offroad-master" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/mx-offroad-master" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/night-city-racing" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/demolition-derby-3" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/rally-racer-dirt" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/stunt-paradise" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
--Action Games
-<iframe src="https://www.crazygames.com/embed/hexa-sort" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/tower-swap" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/mergest-kingdom" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/piles-of-mahjong-jhb" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
--Adventure Games
-<iframe src="https://www.crazygames.com/embed/castle-craft" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/doors-online" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/dead-land-survival" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/stronghold-dude" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/stronghold-dude" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/firestone-idle-rpg" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/battle-arena" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
--Shooting Games
-<iframe src="https://www.crazygames.com/embed/hazmob-fps-online-shooter" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/buildnow-gg" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/bullet-force-multiplayer" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/skillwarz" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/skillwarz" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/bodycamera-shooter" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/bot-machines" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/forward-assault" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
--Sports Games
-<iframe src="https://www.crazygames.com/embed/8-ball-billiards-classic" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/crazy-flips-3d" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/golf-orbit" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/basket-random" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/8-ball-pool-billiards-multiplayer" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/basketbros" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/qb-legend" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/foot-battle-ball" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
--Beauty Games
-<iframe src="https://www.crazygames.com/embed/paper-doll-diary-dress-up-diy" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/chibi-doll---avatar-creator" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/fashion-famous" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/asmr-beauty-homeless" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/monster-makeup-3d" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/back-to-school-uniforms-edition" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
-<iframe src="https://www.crazygames.com/embed/paper-princess---doll-dress-up" style="width: 100%; height: 100%;" frameborder="0" allow="gamepad *;"></iframe>
