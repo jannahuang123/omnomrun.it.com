@@ -1,68 +1,486 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Om Nom Run - Play the Exciting Running Game Online</title>
-    <meta name="description" content="Play Om Nom Run online - An exciting endless runner game featuring the adorable Om Nom character. Jump, slide, and collect candies in this addictive adventure!">
-    <link rel="canonical" href="https://omnomrun.com" />
+    <title>OmNomRun - 最佳在线游戏体验</title>
+    <meta name="description" content="OmNomRun是一个提供高质量在线游戏的平台,包含动作、竞速、解谜等多种类型游戏。享受流畅的游戏体验,发现无限乐趣。">
+    <link rel="canonical" href="https://omnomrun.it" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1rem;
+            padding: 1rem;
+        }
+        @media (max-width: 640px) {
+            .game-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        .game-card {
+            height: 300px;
+            background-color: #1a1a1a;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        .game-card:hover {
+            transform: translateY(-5px);
+        }
+        .game-preview-container {
+            height: 240px;
+            position: relative;
+            overflow: hidden;
+        }
+        .game-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0));
+            color: white;
+        }
+        .game-description-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .game-preview-container:hover .game-description-overlay {
+            opacity: 1;
+        }
+        .category-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 1rem;
+            background-color: #1a1a1a;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .category-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .category-btn.active {
+            background-color: #4a5568;
+        }
+        .game-preview {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .game-preview.active {
+            display: flex;
+        }
+        .preview-container {
+            position: relative;
+            width: 95vw;
+            height: 95vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .preview-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+            transform: scale(1);
+            transform-origin: center;
+        }
+        .preview-controls {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1001;
+        }
+        .control-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: rgba(75, 85, 99, 0.8);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .control-btn:hover {
+            background-color: rgba(99, 102, 241, 0.8);
+            transform: scale(1.1);
+        }
+        .control-btn svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+        .footer-gradient {
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
+        }
+        .search-input {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        .search-input:focus {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .game-card-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            transform: scale(1);
+            transform-origin: center;
+            object-fit: contain;
+        }
+    </style>
 </head>
-<body class="bg-gray-50">
-    <header class="bg-white shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 py-6">
-            <h1 class="text-4xl font-bold text-gray-900 text-center">Om Nom Run</h1>
-            <p class="mt-2 text-xl text-gray-600 text-center">The Ultimate Endless Runner Adventure</p>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+    <!-- 导航栏 -->
+    <nav class="bg-gray-800 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center flex-1">
+                    <a href="/" class="flex items-center space-x-3">
+                        <span class="text-2xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">OmNomRun</span>
+                    </a>
+                    <!-- 搜索框 -->
+                    <div class="flex-1 max-w-2xl ml-8">
+                        <div class="relative">
+                            <input 
+                                type="text" 
+                                id="searchInput"
+                                class="search-input w-full px-4 py-2 rounded-lg text-sm text-white outline-none"
+                                placeholder="搜索游戏..."
+                            >
+                            <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </header>
+    </nav>
 
-    <main class="max-w-7xl mx-auto px-4 py-8">
-        <section class="mb-8">
-            <h2 class="text-2xl font-semibold text-gray-900 mb-4">About the Game</h2>
-            <p class="text-gray-600">Om Nom Run is an exciting endless runner game where you control the adorable Om Nom character. Jump over obstacles, slide under barriers, and collect delicious candies as you run through various challenging levels. With its simple controls and addictive gameplay, Om Nom Run offers endless entertainment for players of all ages.</p>
-        </section>
-
-        <section class="mb-8">
-            <h2 class="text-2xl font-semibold text-gray-900 mb-4">Game Features</h2>
-            <ul class="list-disc list-inside text-gray-600 space-y-2">
-                <li>Simple one-touch controls</li>
-                <li>Multiple challenging levels</li>
-                <li>Collect candies and power-ups</li>
-                <li>Beautiful graphics and animations</li>
-                <li>Endless replay value</li>
-            </ul>
-        </section>
-
-        <section class="mb-8">
-            <h2 class="text-2xl font-semibold text-gray-900 mb-4">Play Now</h2>
-            <div class="aspect-w-16 aspect-h-9 bg-white rounded-lg shadow-lg overflow-hidden">
-                <iframe 
-                    src="https://www.crazygames.com/embed/om-nom-run" 
-                    class="w-full h-[600px]"
-                    frameborder="0" 
-                    allow="gamepad *;">
-                </iframe>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="text-2xl font-semibold text-gray-900 mb-4">How to Play</h2>
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <ol class="list-decimal list-inside text-gray-600 space-y-2">
-                    <li>Click the game window to start</li>
-                    <li>Use spacebar or tap to jump</li>
-                    <li>Slide down to avoid obstacles</li>
-                    <li>Collect candies for extra points</li>
-                    <li>Try to achieve the highest score!</li>
-                </ol>
-            </div>
-        </section>
+    <!-- 分类导航 -->
+    <div class="category-nav">
+        <button class="category-btn active" data-category="all">全部</button>
+    </div>
+    
+    <!-- 游戏网格 -->
+    <main class="flex-grow">
+        <div class="game-grid" id="gameGrid"></div>
     </main>
+    
+    <!-- 游戏预览模态框 -->
+    <div class="game-preview">
+        <div class="close-preview">&times;</div>
+        <div class="preview-container relative w-[90vw] h-[90vh] overflow-hidden"></div>
+    </div>
 
-    <footer class="bg-white border-t mt-8">
-        <div class="max-w-7xl mx-auto px-4 py-6 text-center text-gray-600">
-            <p>&copy; 2024 Om Nom Run. All rights reserved.</p>
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 mt-12">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 关于我们 -->
+                <div>
+                    <h3 class="text-xl font-bold text-purple-500 mb-4">关于 OmNomRun.it</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        OmNomRun.it 是您探索在线游戏的理想平台。我们精心挑选各类优质游戏，
+                        为玩家提供流畅、安全的游戏体验。无需下载安装，随时随地开始您的游戏冒险。
+                    </p>
+                </div>
+                
+                <!-- 游戏特色 -->
+                <div>
+                    <h3 class="text-xl font-bold text-purple-500 mb-4">游戏特色</h3>
+                    <ul class="text-gray-300 text-sm space-y-2">
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"></path>
+                            </svg>
+                            海量游戏分类，满足不同玩家需求
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"></path>
+                            </svg>
+                            无需下载，即点即玩
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"></path>
+                            </svg>
+                            持续更新，带来最新游戏体验
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 技术支持 -->
+                <div>
+                    <h3 class="text-xl font-bold text-purple-500 mb-4">技术支持</h3>
+                    <div class="text-gray-300 text-sm space-y-2">
+                        <p>我们采用最新的Web技术，确保：</p>
+                        <ul class="list-disc list-inside space-y-1 pl-4">
+                            <li>快速加载速度</li>
+                            <li>流畅的游戏体验</li>
+                            <li>跨平台兼容性</li>
+                            <li>安全的游戏环境</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 版权信息 -->
+            <div class="mt-8 pt-8 border-t border-gray-700">
+                <p class="text-center text-gray-400 text-sm">
+                    &copy; 2024 OmNomRun.it - 您的在线游戏天地。保留所有权利。
+                </p>
+            </div>
         </div>
     </footer>
+
+    <script>
+        let allGames = []; // 存储所有游戏数据
+
+        // 加载游戏数据
+        async function loadGames() {
+            try {
+                const response = await fetch('games.json');
+                allGames = await response.json(); // 保存所有游戏数据
+                const categoryStats = await fetch('category_stats.json');
+                
+                // 更新分类导航
+                const categoryNav = document.querySelector('.category-nav');
+                const categories = [...new Set(categoryStats.map(stat => stat.category))];
+                
+                categories.forEach(category => {
+                    if (category !== 'all') {
+                        const count = categoryStats.find(stat => stat.category === category)?.count || 0;
+                        const btn = document.createElement('button');
+                        btn.className = 'category-btn';
+                        btn.setAttribute('data-category', category);
+                        btn.textContent = `${category} (${count})`;
+                        categoryNav.appendChild(btn);
+                    }
+                });
+                
+                // 显示游戏卡片
+                displayGames(allGames);
+                
+                // 添加分类切换事件
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        const category = btn.getAttribute('data-category');
+                        const filteredGames = category === 'all' ? 
+                            allGames : 
+                            allGames.filter(game => game.categories.includes(category));
+                        displayGames(filteredGames);
+                        // 清空搜索框
+                        document.getElementById('searchInput').value = '';
+                    });
+                });
+
+                // 添加搜索功能
+                const searchInput = document.getElementById('searchInput');
+                let searchTimeout;
+
+                searchInput.addEventListener('input', (e) => {
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(() => {
+                        const searchTerm = e.target.value.toLowerCase().trim();
+                        
+                        if (searchTerm === '') {
+                            // 如果搜索框为空，显示当前选中分类的所有游戏
+                            const activeCategory = document.querySelector('.category-btn.active').getAttribute('data-category');
+                            const filteredGames = activeCategory === 'all' ? 
+                                allGames : 
+                                allGames.filter(game => game.categories.includes(activeCategory));
+                            displayGames(filteredGames);
+                            return;
+                        }
+
+                        // 搜索游戏标题和分类
+                        const searchResults = allGames.filter(game => {
+                            const titleMatch = game.title.toLowerCase().includes(searchTerm);
+                            const categoryMatch = game.categories.some(cat => 
+                                cat.toLowerCase().includes(searchTerm)
+                            );
+                            const descriptionMatch = game.description.toLowerCase().includes(searchTerm);
+                            return titleMatch || categoryMatch || descriptionMatch;
+                        });
+
+                        displayGames(searchResults);
+                    }, 300); // 300ms防抖
+                });
+            } catch (error) {
+                console.error('Error loading games:', error);
+            }
+        }
+
+        // 显示游戏卡片
+        function displayGames(games) {
+            const gameGrid = document.getElementById('gameGrid');
+            gameGrid.innerHTML = '';
+            
+            games.forEach(game => {
+                const card = createGameCard(game);
+                gameGrid.appendChild(card);
+            });
+        }
+
+        // 创建游戏卡片
+        function createGameCard(game) {
+            const card = document.createElement('div');
+            card.className = 'game-card';
+            
+            const previewContainer = document.createElement('div');
+            previewContainer.className = 'game-preview-container';
+            
+            // 创建临时容器来解析iframe代码
+            const temp = document.createElement('div');
+            temp.innerHTML = `<iframe src="${game.iframe_src}" class="game-card-iframe" frameborder="0" allow="gamepad *;"></iframe>`;
+            
+            previewContainer.appendChild(temp.firstChild);
+            
+            // 添加游戏信息
+            const info = document.createElement('div');
+            info.className = 'game-info';
+            info.innerHTML = `
+                <h3 class="text-lg font-bold truncate">${game.title}</h3>
+                <div class="flex flex-wrap gap-1 mt-1">
+                    ${game.categories.map(category => 
+                        `<span class="px-2 py-0.5 bg-gray-700 rounded-full text-xs">${category}</span>`
+                    ).join('')}
+                </div>
+            `;
+            
+            // 添加描述浮层
+            const descriptionOverlay = document.createElement('div');
+            descriptionOverlay.className = 'game-description-overlay';
+            descriptionOverlay.innerHTML = `
+                <p class="mb-4">${game.description}</p>
+                <p class="text-sm opacity-75">${game.howToPlay}</p>
+            `;
+            
+            previewContainer.appendChild(info);
+            previewContainer.appendChild(descriptionOverlay);
+            card.appendChild(previewContainer);
+            
+            // 添加点击事件
+            card.addEventListener('click', () => previewGame(game));
+            
+            return card;
+        }
+
+        // 预览游戏
+        function previewGame(game) {
+            const preview = document.querySelector('.game-preview');
+            const previewContainer = preview.querySelector('.preview-container');
+            
+            // 创建控制按钮容器
+            const controls = document.createElement('div');
+            controls.className = 'preview-controls';
+            
+            // 全屏按钮
+            const fullscreenBtn = document.createElement('button');
+            fullscreenBtn.className = 'control-btn';
+            fullscreenBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5"/>
+                </svg>
+            `;
+            
+            // 关闭按钮
+            const closeBtn = document.createElement('button');
+            closeBtn.className = 'control-btn';
+            closeBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            `;
+            
+            controls.appendChild(fullscreenBtn);
+            controls.appendChild(closeBtn);
+            
+            // 创建新的iframe
+            const iframe = document.createElement('iframe');
+            iframe.src = game.iframe_src;
+            iframe.className = 'preview-iframe';
+            iframe.setAttribute('frameborder', '0');
+            iframe.setAttribute('allow', 'gamepad *; fullscreen *;');
+            iframe.setAttribute('scrolling', 'no');
+            iframe.setAttribute('allowfullscreen', 'true');
+            
+            // 清除之前的内容并添加新内容
+            previewContainer.innerHTML = '';
+            previewContainer.appendChild(iframe);
+            previewContainer.appendChild(controls);
+            
+            // 显示预览
+            preview.classList.add('active');
+            
+            // 全屏按钮点击事件
+            fullscreenBtn.onclick = () => {
+                if (iframe.requestFullscreen) {
+                    iframe.requestFullscreen();
+                } else if (iframe.webkitRequestFullscreen) {
+                    iframe.webkitRequestFullscreen();
+                } else if (iframe.msRequestFullscreen) {
+                    iframe.msRequestFullscreen();
+                }
+            };
+            
+            // 关闭按钮点击事件
+            closeBtn.onclick = () => {
+                preview.classList.remove('active');
+                previewContainer.innerHTML = '';
+            };
+        }
+
+        // 初始化
+        loadGames();
+    </script>
 </body>
-</html> 
+</html>
