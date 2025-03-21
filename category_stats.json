@@ -1,0 +1,274 @@
+[
+  {
+    "category": "Action",
+    "count": 27,
+    "games": [
+      "Stickman Destruction 3 Heroes",
+      "World Z Defense - Zombie Defense",
+      "DEADSHOT.io",
+      "EvoWars.io",
+      "Gridpunk - 3v3 Battle Royale",
+      "Autogun Heroes",
+      "SkillWarz",
+      "Dead Land: Survival",
+      "Sniper Challenge",
+      "Battle Arena",
+      "Foot Battle Ball",
+      "Swords & Souls",
+      "Holey.io Battle Royale",
+      "Time Shooter 2",
+      "Sniper Shot: Bullet Time",
+      "Sandbox City",
+      "Obby: Pull a Sword",
+      "Heroes Assemble",
+      "Forward Assault Remix",
+      "BodyCamera Shooter",
+      "Planet Smash Destruction",
+      "Raid Heroes: Total War",
+      "Assault Bots",
+      "Zombie Crusher",
+      "Snake Shooter: Tower Battle",
+      "Hazmob FPS: Online Shooter",
+      "Pixel Warfare"
+    ]
+  },
+  {
+    "category": "Racing",
+    "count": 12,
+    "games": [
+      "Night City Racing",
+      "Sky Riders",
+      "Stunt Paradise",
+      "Racing Limits",
+      "Sandbox City",
+      "Mr. Racer",
+      "Xtreme City Drifting",
+      "PolyTrack",
+      "Super Bike The Champion",
+      "Rally Racer Dirt",
+      "MX Offroad Master",
+      "Pirates of the Caribbean: ToW"
+    ]
+  },
+  {
+    "category": "Sports",
+    "count": 7,
+    "games": [
+      "Foot Battle Ball",
+      "Basketball Superstars",
+      "Mini Golf Club",
+      "8 Ball Billiards Classic",
+      "Super Bike The Champion",
+      "Golf Orbit",
+      "8 Ball Pool Billiards Multiplayer"
+    ]
+  },
+  {
+    "category": "Puzzle",
+    "count": 28,
+    "games": [
+      "Tropical Merge",
+      "Defender Idle 2",
+      "Pin Away Puzzle - Tap It Out",
+      "Piles of Mahjong",
+      "Escape From Prison Multiplayer",
+      "Swords & Souls",
+      "Revolution Idle X",
+      "RPG Idle Clicker",
+      "Planet Life Idle",
+      "Race Clicker: Tap Tap Game",
+      "Mergest Kingdom",
+      "Mahjongg Solitaire",
+      "Crusher Clicker",
+      "Obby: Pull a Sword",
+      "Knock and Run: 100 Doors Escape",
+      "Idle Saga",
+      "Capybara Clicker",
+      "Knight Clicker",
+      "Daily Room Escape",
+      "Hidden Objects",
+      "Hexa Sort",
+      "Mirror Room Escape",
+      "Firestone Idle RPG",
+      "Spotti: Find the Differences",
+      "Farm Merge Valley",
+      "Mystery Digger",
+      "Thief Puzzle",
+      "Words of Wonders"
+    ]
+  },
+  {
+    "category": "Strategy",
+    "count": 20,
+    "games": [
+      "Castle Craft",
+      "World Z Defense - Zombie Defense",
+      "Corn Tycoon",
+      "BuildNow GG",
+      "EvoWars.io",
+      "Gridpunk - 3v3 Battle Royale",
+      "SkillWarz",
+      "Battle Arena",
+      "Foot Battle Ball",
+      "Holey.io Battle Royale",
+      "Leek Factory Tycoon",
+      "Mergest Kingdom",
+      "Forward Assault Remix",
+      "Iron Towers Alliance",
+      "Limited Defense",
+      "Raid Heroes: Total War",
+      "Snake Shooter: Tower Battle",
+      "Dig Craft",
+      "Tower Swap",
+      "Pixel Warfare"
+    ]
+  },
+  {
+    "category": "Adventure",
+    "count": 4,
+    "games": [
+      "World Z Defense - Zombie Defense",
+      "WorldGuessr Free GeoGuessr",
+      "RPG Idle Clicker",
+      "Firestone Idle RPG"
+    ]
+  },
+  {
+    "category": "Arcade",
+    "count": 5,
+    "games": [
+      "Knock and Run: 100 Doors Escape",
+      "8 Ball Billiards Classic",
+      "Jump Guys",
+      "Tile Jumper 3D",
+      "Man Runner 2048"
+    ]
+  },
+  {
+    "category": "Multiplayer",
+    "count": 25,
+    "games": [
+      "Stickman Destruction 3 Heroes",
+      "DEADSHOT.io",
+      "EvoWars.io",
+      "Gridpunk - 3v3 Battle Royale",
+      "Agar.io",
+      "The Ink Studio",
+      "BasketBros",
+      "Bloxd.io",
+      "Cubes 2048.io",
+      "Demolition Derby 3",
+      "Bullet Force",
+      "Battle Arena",
+      "Escape From Prison Multiplayer",
+      "Revolution Idle X",
+      "Holey.io Battle Royale",
+      "Shell Shockers",
+      "Paper.io 2",
+      "Planet Smash Destruction",
+      "Doors Online",
+      "Super Bike The Champion",
+      "Geometry Game",
+      "8 Ball Pool Billiards Multiplayer",
+      "CubeRealm.io",
+      "Hazmob FPS: Online Shooter",
+      "Kour.io"
+    ]
+  },
+  {
+    "category": "Simulation",
+    "count": 18,
+    "games": [
+      "Castle Craft",
+      "Night City Racing",
+      "Corn Tycoon",
+      "BuildNow GG",
+      "The Ink Studio",
+      "Country Life Meadows",
+      "Defender Idle 2",
+      "Revolution Idle X",
+      "RPG Idle Clicker",
+      "Leek Factory Tycoon",
+      "Planet Life Idle",
+      "Supermarket Simulator: Store Manager",
+      "Sandbox City",
+      "Idle Saga",
+      "Xtreme City Drifting",
+      "Firestone Idle RPG",
+      "Dig Craft",
+      "Farm Merge Valley"
+    ]
+  },
+  {
+    "category": "Fighting",
+    "count": 5,
+    "games": [
+      "Gridpunk - 3v3 Battle Royale",
+      "Battle Arena",
+      "Foot Battle Ball",
+      "Holey.io Battle Royale",
+      "Snake Shooter: Tower Battle"
+    ]
+  },
+  {
+    "category": "Shooting",
+    "count": 16,
+    "games": [
+      "EvoWars.io",
+      "Gridpunk - 3v3 Battle Royale",
+      "Autogun Heroes",
+      "SkillWarz",
+      "Sniper Challenge",
+      "Battle Arena",
+      "Foot Battle Ball",
+      "Holey.io Battle Royale",
+      "Time Shooter 2",
+      "Sniper Shot: Bullet Time",
+      "Forward Assault Remix",
+      "BodyCamera Shooter",
+      "Raid Heroes: Total War",
+      "Snake Shooter: Tower Battle",
+      "Hazmob FPS: Online Shooter",
+      "Pixel Warfare"
+    ]
+  },
+  {
+    "category": "Horror",
+    "count": 7,
+    "games": [
+      "Night City Racing",
+      "World Z Defense - Zombie Defense",
+      "DEADSHOT.io",
+      "Dead Land: Survival",
+      "Sandbox City",
+      "Knight Clicker",
+      "Zombie Crusher"
+    ]
+  },
+  {
+    "category": "Others",
+    "count": 20,
+    "games": [
+      "Smash Karts",
+      "Block Wall Destroyer",
+      "Vortex 9",
+      "Ragdoll Archers",
+      "Cat and Granny",
+      "Project Prismatic",
+      "QB Legend",
+      "Stronghold Dude",
+      "Slice Master",
+      "Playground Man! Ragdoll Show!",
+      "Downtown 1930s Mafia",
+      "Bank Heist",
+      "Ships 3D",
+      "Guess Their Answer",
+      "Basket Random",
+      "Mr. Mine",
+      "Count Masters: Stickman Games",
+      "Crazy Flips 3D",
+      "Space Waves",
+      "Miniblox"
+    ]
+  }
+]

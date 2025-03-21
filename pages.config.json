@@ -1,0 +1,16 @@
+{
+  "buildCommand": "",
+  "outputDirectory": "",
+  "nodeVersion": "18",
+  "routes": [
+    {
+      "pattern": "/*",
+      "script": ""
+    }
+  ],
+  "headers": {
+    "/*": {
+      "X-Content-Type-Options": "nosniff"
+    }
+  }
+} 
