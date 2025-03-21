@@ -2,48 +2,78 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>OmNomRun - 最佳在线游戏体验</title>
     <meta name="description" content="OmNomRun是一个提供高质量在线游戏的平台,包含动作、竞速、解谜等多种类型游戏。享受流畅的游戏体验,发现无限乐趣。">
     <link rel="canonical" href="https://omnomrun.it" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* 移动端优化 */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            overscroll-behavior: none;
+            touch-action: manipulation;
+        }
+        
         .game-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 1rem;
-            padding: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 0.75rem;
+            padding: 0.75rem;
         }
-        @media (max-width: 640px) {
+        
+        @media (min-width: 640px) {
             .game-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+                gap: 1rem;
+                padding: 1rem;
             }
         }
+        
         .game-card {
-            height: 300px;
+            height: 250px;
             background-color: #1a1a1a;
             border-radius: 0.5rem;
             overflow: hidden;
             position: relative;
             transition: transform 0.3s ease;
         }
+        
+        @media (min-width: 640px) {
+            .game-card {
+                height: 300px;
+            }
+        }
+        
         .game-card:hover {
             transform: translateY(-5px);
         }
+        
         .game-preview-container {
-            height: 240px;
+            height: 200px;
             position: relative;
             overflow: hidden;
         }
+        
+        @media (min-width: 640px) {
+            .game-preview-container {
+                height: 240px;
+            }
+        }
+        
         .game-info {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 1rem;
+            padding: 0.75rem;
             background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0));
             color: white;
         }
+        
         .game-description-overlay {
             position: absolute;
             top: 0;
@@ -61,30 +91,51 @@
             align-items: center;
             text-align: center;
         }
+        
         .game-preview-container:hover .game-description-overlay {
             opacity: 1;
         }
+        
+        /* 移动端触摸支持 */
+        @media (max-width: 640px) {
+            .game-preview-container:active .game-description-overlay {
+                opacity: 1;
+            }
+        }
+        
         .category-nav {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            padding: 1rem;
+            padding: 0.75rem;
             background-color: #1a1a1a;
             position: sticky;
             top: 0;
             z-index: 10;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
         }
+        
+        .category-nav::-webkit-scrollbar {
+            display: none;
+        }
+        
         .category-btn {
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 0.75rem;
             border-radius: 0.25rem;
             background-color: #333;
             color: white;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            white-space: nowrap;
+            font-size: 0.875rem;
         }
+        
         .category-btn.active {
             background-color: #4a5568;
         }
+        
         .game-preview {
             position: fixed;
             top: 0;
@@ -97,34 +148,52 @@
             align-items: center;
             z-index: 1000;
         }
+        
         .game-preview.active {
             display: flex;
         }
+        
         .preview-container {
             position: relative;
-            width: 95vw;
-            height: 95vh;
+            width: 100%;
+            height: 90vh;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
         }
+        
+        @media (min-width: 640px) {
+            .preview-container {
+                width: 95vw;
+                height: 95vh;
+            }
+        }
+        
         .preview-iframe {
             width: 100%;
             height: 100%;
             border: none;
             border-radius: 8px;
-            transform: scale(1);
-            transform-origin: center;
         }
+        
         .preview-controls {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
+            top: 0.5rem;
+            right: 0.5rem;
             display: flex;
-            gap: 1rem;
+            gap: 0.5rem;
             z-index: 1001;
         }
+        
+        @media (min-width: 640px) {
+            .preview-controls {
+                top: 1rem;
+                right: 1rem;
+                gap: 1rem;
+            }
+        }
+        
         .control-btn {
             width: 2.5rem;
             height: 2.5rem;
@@ -138,36 +207,44 @@
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
+        
         .control-btn:hover {
             background-color: rgba(99, 102, 241, 0.8);
             transform: scale(1.1);
         }
+        
         .control-btn svg {
             width: 1.25rem;
             height: 1.25rem;
         }
+        
         .footer-gradient {
             background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
         }
+        
         .search-input {
             background-color: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
         }
+        
         .search-input:focus {
             background-color: rgba(255, 255, 255, 0.15);
             border-color: rgba(255, 255, 255, 0.3);
+            outline: none;
         }
+        
         .search-input::placeholder {
             color: rgba(255, 255, 255, 0.5);
         }
+        
         .game-card-iframe {
             width: 100%;
             height: 100%;
             border: none;
-            transform: scale(1);
+            transform: scale(0.9);
             transform-origin: center;
-            object-fit: contain;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -378,11 +455,30 @@
             const previewContainer = document.createElement('div');
             previewContainer.className = 'game-preview-container';
             
-            // 创建临时容器来解析iframe代码
-            const temp = document.createElement('div');
-            temp.innerHTML = `<iframe src="${game.iframe_src}" class="game-card-iframe" frameborder="0" allow="gamepad *;"></iframe>`;
-            
-            previewContainer.appendChild(temp.firstChild);
+            // 创建图片代替iframe（移动端优化）
+            if (game.thumbnail) {
+                const thumbnail = document.createElement('img');
+                thumbnail.src = game.thumbnail;
+                thumbnail.alt = game.title;
+                thumbnail.className = 'w-full h-full object-cover';
+                previewContainer.appendChild(thumbnail);
+            } else {
+                // 如果没有缩略图，后退到iframe
+                try {
+                    // 创建临时容器来解析iframe代码
+                    const temp = document.createElement('div');
+                    temp.innerHTML = `<iframe src="${game.iframe_src}" class="game-card-iframe" frameborder="0" allow="gamepad *;"></iframe>`;
+                    
+                    previewContainer.appendChild(temp.firstChild);
+                } catch (e) {
+                    console.error('Error creating iframe:', e);
+                    // 添加后备内容
+                    const fallback = document.createElement('div');
+                    fallback.className = 'w-full h-full flex items-center justify-center bg-gray-800';
+                    fallback.textContent = game.title;
+                    previewContainer.appendChild(fallback);
+                }
+            }
             
             // 添加游戏信息
             const info = document.createElement('div');
@@ -401,7 +497,7 @@
             descriptionOverlay.className = 'game-description-overlay';
             descriptionOverlay.innerHTML = `
                 <p class="mb-4">${game.description}</p>
-                <p class="text-sm opacity-75">${game.howToPlay}</p>
+                <p class="text-sm opacity-75">${game.howToPlay || ''}</p>
             `;
             
             previewContainer.appendChild(info);
@@ -444,43 +540,93 @@
             controls.appendChild(fullscreenBtn);
             controls.appendChild(closeBtn);
             
-            // 创建新的iframe
-            const iframe = document.createElement('iframe');
-            iframe.src = game.iframe_src;
-            iframe.className = 'preview-iframe';
-            iframe.setAttribute('frameborder', '0');
-            iframe.setAttribute('allow', 'gamepad *; fullscreen *;');
-            iframe.setAttribute('scrolling', 'no');
-            iframe.setAttribute('allowfullscreen', 'true');
-            
-            // 清除之前的内容并添加新内容
-            previewContainer.innerHTML = '';
-            previewContainer.appendChild(iframe);
-            previewContainer.appendChild(controls);
-            
-            // 显示预览
-            preview.classList.add('active');
-            
-            // 全屏按钮点击事件
-            fullscreenBtn.onclick = () => {
-                if (iframe.requestFullscreen) {
-                    iframe.requestFullscreen();
-                } else if (iframe.webkitRequestFullscreen) {
-                    iframe.webkitRequestFullscreen();
-                } else if (iframe.msRequestFullscreen) {
-                    iframe.msRequestFullscreen();
-                }
-            };
-            
-            // 关闭按钮点击事件
-            closeBtn.onclick = () => {
-                preview.classList.remove('active');
+            // 创建新的iframe，添加错误处理
+            try {
+                const iframe = document.createElement('iframe');
+                iframe.src = game.iframe_src;
+                iframe.className = 'preview-iframe';
+                iframe.setAttribute('frameborder', '0');
+                iframe.setAttribute('allow', 'gamepad *; fullscreen *;');
+                iframe.setAttribute('scrolling', 'no');
+                iframe.setAttribute('allowfullscreen', 'true');
+                
+                // 清除之前的内容并添加新内容
                 previewContainer.innerHTML = '';
-            };
+                previewContainer.appendChild(iframe);
+                previewContainer.appendChild(controls);
+                
+                // 监听iframe加载错误
+                iframe.onerror = () => {
+                    iframe.style.display = 'none';
+                    const errorMsg = document.createElement('div');
+                    errorMsg.className = 'text-center p-4';
+                    errorMsg.innerHTML = `<p>游戏加载失败，请稍后再试</p>`;
+                    previewContainer.appendChild(errorMsg);
+                };
+                
+                // 显示预览
+                preview.classList.add('active');
+                
+                // 全屏按钮点击事件
+                fullscreenBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    if (iframe.requestFullscreen) {
+                        iframe.requestFullscreen();
+                    } else if (iframe.webkitRequestFullscreen) {
+                        iframe.webkitRequestFullscreen();
+                    } else if (iframe.msRequestFullscreen) {
+                        iframe.msRequestFullscreen();
+                    }
+                };
+                
+                // 关闭按钮点击事件
+                closeBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    preview.classList.remove('active');
+                    setTimeout(() => {
+                        previewContainer.innerHTML = '';
+                    }, 300);
+                };
+                
+                // 点击背景关闭
+                preview.onclick = (e) => {
+                    if (e.target === preview) {
+                        preview.classList.remove('active');
+                        setTimeout(() => {
+                            previewContainer.innerHTML = '';
+                        }, 300);
+                    }
+                };
+            } catch (e) {
+                console.error('Error loading game preview:', e);
+                
+                // 显示错误信息
+                previewContainer.innerHTML = '';
+                const errorMsg = document.createElement('div');
+                errorMsg.className = 'text-center p-4';
+                errorMsg.innerHTML = `<p>游戏加载失败，请稍后再试</p>`;
+                previewContainer.appendChild(errorMsg);
+                previewContainer.appendChild(controls);
+                
+                preview.classList.add('active');
+                
+                // 关闭按钮点击事件
+                closeBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    preview.classList.remove('active');
+                };
+            }
         }
 
         // 初始化
-        loadGames();
+        document.addEventListener('DOMContentLoaded', function() {
+            loadGames();
+            
+            // 处理移动端触摸事件
+            if ('ontouchstart' in window) {
+                document.body.classList.add('touch-device');
+            }
+        });
     </script>
 </body>
 </html>
